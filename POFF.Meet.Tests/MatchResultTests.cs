@@ -22,4 +22,29 @@ public class MatchResultTests
         Assert.That(result.SetResults[0].Home, Is.EqualTo(5), "Unexpected SetResults[0].Home");
         Assert.That(result.SetResults[0].Guest, Is.EqualTo(2), "Unexpected SetResults[0].Guest");
     }
+
+    [Test]
+    public void HomeGuest_return_set_goals_counts()
+    {
+        // arrange
+        var sut = new MatchResult();
+        sut.AddSetResult(new SetResult() { Home = 73, Guest = 16 });
+
+        // act & assert
+        Assert.That(sut.Home(), Is.EqualTo(73));
+        Assert.That(sut.Guest(), Is.EqualTo(16));
+    }
+
+    [Test]
+    public void HomeGuest_return_set_counts()
+    {
+        // arrange
+        var sut = new MatchResult();
+        sut.AddSetResult(new SetResult() { Home = 73, Guest = 16 });
+        sut.AddSetResult(new SetResult() { Home = 54, Guest = 45 });
+
+        // act & assert
+        Assert.That(sut.Home(), Is.EqualTo(2));
+        Assert.That(sut.Guest(), Is.EqualTo(0));
+    }
 }

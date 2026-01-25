@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace POFF.Meet.Domain;
 
@@ -25,6 +26,24 @@ public class MatchResult
     public void Clear()
     {
         Array.Resize(ref SetResults, 0);
+    }
+
+    public int Home()
+    {
+        if (SetResults.Length == 1)
+        {
+            return SetResults[0].Home;
+        }
+        return SetResults.Count(sr => sr.Home > sr.Guest);
+    }
+
+    public int Guest()
+    {
+        if (SetResults.Length == 1)
+        {
+            return SetResults[0].Guest;
+        }
+        return SetResults.Count(sr => sr.Guest > sr.Home);
     }
 
     public override string ToString()

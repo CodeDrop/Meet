@@ -19,24 +19,7 @@ public class Win3Equal1Loss0ScoreMode : IScoreMode
 
             if (match.Status != MatchStatus.Finished) continue;
 
-            ScoredConceded frames = new();
-
-            if (match.Result.SetResults.Count() == 1)
-            {
-                // assume 1 SetResult contains won/lost number of frames
-                var setCounts = match.Result.SetResults.First();
-                frames = new ScoredConceded(setCounts.Home, setCounts.Guest);
-            }
-            else
-            {
-                // assume multiple SetResults contain individual frame results
-                foreach (var setResult in match.Result.SetResults)
-                {
-                    if (setResult.Home == setResult.Guest) continue; // skip drawn sets
-                    var setWonHome = setResult.Home > setResult.Guest;
-                    frames += new ScoredConceded(setWonHome ? 1 : 0, setWonHome ? 0 : 1);
-                }
-            }
+            ScoredConceded frames = new(match.Result.Home(), match.Result.Guest());
 
             var x = frames.Difference;
 
