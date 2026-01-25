@@ -1,15 +1,10 @@
 ﻿namespace POFF.Meet.Domain;
 
-public class SetResult
+public class SetResult(in int home, in int guest)
 {
-    public SetResult()
-    {
-        Home = 0;
-        Guest = 0;
-    }
+    public int Home { get; } = home;
 
-    public int Home { get; set; }
-    public int Guest { get; set; }
+    public int Guest { get; } = guest;
 
     public override string ToString()
     {

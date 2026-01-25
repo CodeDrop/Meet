@@ -21,7 +21,7 @@ public class HtmlExportTests
         tournament.AddTeam("Team N°2");
         tournament.AddTeam("Team N°3").Withdrawn = true;
         var matchResult = new MatchResult();
-        matchResult.AddSetResult(new SetResult() { Home = 5, Guest = 3 });
+        matchResult.AddSetResult(new SetResult(home: 5, guest: 3));
         tournament.SetResult(2, matchResult);
         var sut = new ClipboardHtmlExporter(ExportType.Games | ExportType.Standings);
 

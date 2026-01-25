@@ -12,7 +12,7 @@ public class MatchResultTests
     {
         // Arrange
         var result = new MatchResult();
-        var setResult = new SetResult() { Home = 5, Guest = 2 };
+        var setResult = new SetResult(home: 5, guest: 2);
 
         // Act
         result.AddSetResult(setResult);
@@ -29,7 +29,7 @@ public class MatchResultTests
     {
         // arrange
         var sut = new MatchResult();
-        sut.AddSetResult(new SetResult() { Home = 73, Guest = 16 });
+        sut.AddSetResult(new SetResult(home: 73, guest: 16));
 
         // act & assert
         Assert.That(sut.Home(), Is.EqualTo(73));
@@ -41,8 +41,8 @@ public class MatchResultTests
     {
         // arrange
         var sut = new MatchResult();
-        sut.AddSetResult(new SetResult() { Home = 73, Guest = 16 });
-        sut.AddSetResult(new SetResult() { Home = 54, Guest = 45 });
+        sut.AddSetResult(new SetResult(home: 73, guest: 16));
+        sut.AddSetResult(new SetResult(home: 54, guest: 45));
 
         // act & assert
         Assert.That(sut.Home(), Is.EqualTo(2));

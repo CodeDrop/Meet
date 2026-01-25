@@ -170,7 +170,7 @@ public class AppWindowViewModel : ViewModelBase
         {
             if (input.Home.HasValue && input.Guest.HasValue)
             {
-                SelectedMatch.Result.AddSetResult(new SetResult { Home = input.Home.Value, Guest = input.Guest.Value });
+                SelectedMatch.Result.AddSetResult(new SetResult(input.Home.Value, input.Guest.Value));
             }
         }
         SelectedMatch.Status = SelectedMatch.Result.SetResults.Any() ? MatchStatus.Finished : MatchStatus.Open;

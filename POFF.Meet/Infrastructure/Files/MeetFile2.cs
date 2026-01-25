@@ -52,7 +52,7 @@ public class MeetFile2 : MeetFileBase
         var resultEntry = Results.SingleOrDefault(r => r.HomeNo == homeNo && r.GuestNo == guestNo);
         var setResults = resultEntry == null ? [] :
             Results.Single(r => r.HomeNo == homeNo && r.GuestNo == guestNo)
-                .Sets.Select(s => new SetResult { Home = s.Home, Guest = s.Guest }).ToArray();
+                .Sets.Select(s => new SetResult(s.Home, s.Guest)).ToArray();
 
         return new MatchResult(setResults);
     }

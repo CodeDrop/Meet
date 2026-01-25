@@ -10,7 +10,7 @@ public class SetResultTests
     public void ToStringTest()
     {
         // Arrange
-        var setResult = new SetResult() { Home = 5, Guest = 3 };
+        var setResult = new SetResult(home: 5, guest: 3);
 
         // Act
         string result = setResult.ToString();

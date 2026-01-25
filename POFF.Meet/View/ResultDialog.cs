@@ -369,7 +369,7 @@ public class ResultDialog : Form
             {
                 if (setResultInput.Home.HasValue && setResultInput.Guest.HasValue)
                 {
-                    match.Result.AddSetResult(new SetResult() { Home = (int)setResultInput.Home, Guest = (int)setResultInput.Guest });
+                    match.Result.AddSetResult(new SetResult((int)setResultInput.Home, (int)setResultInput.Guest));
                 }
             }
         };
