@@ -192,7 +192,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Infrastructure\MeetFileV1.xml">
+    <None Include="Infrastructure\MeetFile1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -206,7 +206,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Infrastructure\MeetFileV2.xml">
+    <None Include="Infrastructure\MeetFile2.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

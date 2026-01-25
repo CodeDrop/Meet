@@ -1,55 +1,55 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace POFF.Meet.Domain;
 
 public class MatchResult
 {
-    public SetResult[] SetResults = [];
+    public MatchResult()
+    { }
+
+    public MatchResult(IEnumerable<SetResult> setResults)
+    {
+        _setResults.AddRange(setResults);
+    }
+
+    private readonly List<SetResult> _setResults = [];
+    public IEnumerable<SetResult> SetResults => _setResults;
 
     public void AddSetResult(SetResult setResult)
     {
         if (setResult is null)
             throw new ArgumentNullException("setResultRow");
-
-        int goalCount1 = default, goalCount2 = default;
-
-        goalCount1 = setResult.Home;
-        goalCount2 = setResult.Guest;
-
-        Array.Resize(ref SetResults, SetResults.Length + 1);
-        SetResults[SetResults.Length - 1] = new SetResult();
-        SetResults[SetResults.Length - 1].Home = goalCount1;
-        SetResults[SetResults.Length - 1].Guest = goalCount2;
+        _setResults.Add(setResult);
     }
 
     public void Clear()
     {
-        Array.Resize(ref SetResults, 0);
+        _setResults.Clear();
     }
 
     public int Home()
     {
-        if (SetResults.Length == 1)
+        if (_setResults.Count == 1)
         {
-            return SetResults[0].Home;
+            return _setResults[0].Home;
         }
         return SetResults.Count(sr => sr.Home > sr.Guest);
     }
 
     public int Guest()
     {
-        if (SetResults.Length == 1)
+        if (_setResults.Count == 1)
         {
-            return SetResults[0].Guest;
+            return _setResults[0].Guest;
         }
         return SetResults.Count(sr => sr.Guest > sr.Home);
     }
 
     public override string ToString()
     {
-        if (SetResults.Length == 0)
-            return "";
+        if (!SetResults.Any()) return "";
 
         var resultString = new System.Text.StringBuilder();
 

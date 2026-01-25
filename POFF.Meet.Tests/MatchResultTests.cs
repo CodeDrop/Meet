@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using POFF.Meet.Domain;
+using System.Linq;
 
 namespace POFF.Meet.Tests;
 
@@ -18,9 +19,9 @@ public class MatchResultTests
 
         // Assert
         Assert.That(result.SetResults, Is.Not.Null, "SetResults is null");
-        Assert.That(result.SetResults.Length, Is.EqualTo(1), "Unexpected number of SetResults");
-        Assert.That(result.SetResults[0].Home, Is.EqualTo(5), "Unexpected SetResults[0].Home");
-        Assert.That(result.SetResults[0].Guest, Is.EqualTo(2), "Unexpected SetResults[0].Guest");
+        Assert.That(result.SetResults.Count(), Is.EqualTo(1), "Unexpected number of SetResults");
+        Assert.That(result.SetResults.First().Home, Is.EqualTo(5), "Unexpected SetResults[0].Home");
+        Assert.That(result.SetResults.First().Guest, Is.EqualTo(2), "Unexpected SetResults[0].Guest");
     }
 
     [Test]

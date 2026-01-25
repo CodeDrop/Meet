@@ -20,7 +20,7 @@ public class Export_into_twig_file
     {
         _targetFile = Path.GetTempFileName();
         File.Copy(@"Infrastructure\TournamentPage.html.twig", _targetFile, overwrite: true);
-        var storage = new FileTournamentStorage(@"Infrastructure\MeetFileV1.xml");
+        var storage = new FileTournamentStorage(@"Infrastructure\MeetFile1.xml");
         _tournament = storage.Load();
         _sut = new TwigFileInjectionExporter(_targetFile);
         _sut.Export(_tournament, [1]);

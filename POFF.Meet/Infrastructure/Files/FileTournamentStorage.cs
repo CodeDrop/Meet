@@ -46,7 +46,7 @@ public class FileTournamentStorage(in string filename) : ITournamentStorage
     {
         if (!File.Exists(_filename)) return Tournament.Empty;
 
-        var meetFile = Deserialize([typeof(MeetFile2), typeof(MeetFile1)]);
+        var meetFile = Deserialize([typeof(MeetFile2)]);
         var tournament = meetFile.ToTournament();
 
         if (string.IsNullOrWhiteSpace(tournament.Name))

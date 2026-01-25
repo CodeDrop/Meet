@@ -134,7 +134,6 @@
     <Compile Include="Infrastructure\Files\MeetFile2.cs" />
     <Compile Include="Infrastructure\IExporter.cs" />
     <Compile Include="Infrastructure\ITournamentStorage.cs" />
-    <Compile Include="Infrastructure\Files\MeetFile1.cs" />
     <Compile Include="Infrastructure\TwigFileInjectionExporter.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

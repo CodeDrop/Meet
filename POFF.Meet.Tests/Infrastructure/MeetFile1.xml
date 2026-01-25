@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Meet xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Id>2545D2E5-380F-4F42-A46A-2C4ABDCB54AF</Id>
+  <PlayMode>RoundRobinPlayMode</PlayMode>
+  <Teams>
+    <Team No="1">Team A</Team>
+    <Team No="2">Team B</Team>
+    <Team No="3">Team C</Team>
+  </Teams>
+  <Matches>
+    <Match No="1" Round="1" HomeNo="1" GuestNo="2">Finished</Match>
+    <Match No="2" Round="1" HomeNo="2" GuestNo="3">Finished</Match>
+    <Match No="3" Round="1" HomeNo="1" GuestNo="3">Open</Match>
+  </Matches>
+  <Results>
+    <Result HomeNo="1" GuestNo="2">
+      <Sets>
+        <Set Home="3" Guest="0"/>
+      </Sets>
+    </Result>
+    <Result HomeNo="2" GuestNo="3">
+      <Sets>
+        <Set Home="3" Guest="2"/>
+      </Sets>
+    </Result>
+  </Results>
+</Meet>

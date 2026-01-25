@@ -30,7 +30,7 @@ public class MeetFile2 : MeetFileBase
 
     public override Tournament ToTournament()
     {
-        var teams = Teams.Select(t => new Team { Number = t.No, Name = t.Name, Withdrawn=t.Withdrawn }).AsQueryable();
+        var teams = Teams.Select(t => new Team { Number = t.No, Name = t.Name, Withdrawn = t.Withdrawn }).AsQueryable();
 
         var matches = Matches.Select(m => new Match()
         {
@@ -49,14 +49,12 @@ public class MeetFile2 : MeetFileBase
 
     private MatchResult GetResult(int homeNo, int guestNo)
     {
-        var result = new MatchResult();
         var resultEntry = Results.SingleOrDefault(r => r.HomeNo == homeNo && r.GuestNo == guestNo);
-        if (resultEntry != null)
-        {
-            result.SetResults = Results.Single(r => r.HomeNo == homeNo && r.GuestNo == guestNo)
+        var setResults = resultEntry == null ? [] :
+            Results.Single(r => r.HomeNo == homeNo && r.GuestNo == guestNo)
                 .Sets.Select(s => new SetResult { Home = s.Home, Guest = s.Guest }).ToArray();
-        }
-        return result;
+
+        return new MatchResult(setResults);
     }
 }
 
