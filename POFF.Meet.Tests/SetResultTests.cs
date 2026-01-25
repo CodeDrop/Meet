@@ -6,16 +6,29 @@ namespace POFF.Meet.Tests;
 [TestFixture]
 public class SetResultTests
 {
-    [Test]
-    public void ToStringTest()
+    private SetResult _sut;
+
+    [OneTimeSetUp]
+    public void OneTimeSetUp()
     {
-        // Arrange
-        var setResult = new SetResult(home: 5, guest: 3);
+        _sut = new SetResult(home: 5, guest: 3);
+    }
 
-        // Act
-        string result = setResult.ToString();
+    [Test]
+    public void Home_returns_home_goals()
+    {
+        Assert.That(_sut.Home, Is.EqualTo(5));
+    }
 
-        // Assert
-        Assert.That(result, Is.EqualTo("5:3"), "Unexpected result");
+    [Test]
+    public void Guest_returns_guest_goals()
+    {
+        Assert.That(_sut.Guest, Is.EqualTo(3));
+    }
+
+    [Test]
+    public void ToString_returns_home_colon_guest()
+    {
+        Assert.That(_sut.ToString(), Is.EqualTo("5:3"));
     }
 }
