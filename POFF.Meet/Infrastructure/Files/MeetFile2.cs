@@ -31,13 +31,14 @@ public class MeetFile2 : MeetFileBase
     public override Tournament ToTournament()
     {
         var teams = Teams.Select(t => new Team { Number = t.No, Name = t.Name, Withdrawn = t.Withdrawn }).AsQueryable();
-
-        var matches = Matches.Select(m => new Match()
+        
+        var matches = Matches.Select(m => new Match(
+            m.No,
+            teams.Single(t => t.Number == m.HomeNo),
+            teams.Single(t => t.Number == m.GuestNo)
+        )
         {
-            Number = m.No,
             Section = m.Round,
-            Team1 = teams.Single(t => t.Number == m.HomeNo),
-            Team2 = teams.Single(t => t.Number == m.GuestNo),
             Result = GetResult(m.HomeNo, m.GuestNo),
             Status = m.Status
         });

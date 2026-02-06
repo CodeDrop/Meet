@@ -3,28 +3,15 @@
 namespace POFF.Meet.Domain;
 
 [DebuggerDisplay("Match N°{Number}: {Team1} - {Team2}")]
-public class Match
+public class Match(in int number, in Team team1, in Team team2)
 {
-    internal Match()
-    {
-        // required for serialization
-    }
-
-    public Match(int number, Team team1, Team team2)
-    {
-        Number = number;
-        Team1 = team1;
-        Team2 = team2;
-        Result = new MatchResult();
-    }
-
-    public int Number { get; set; }
+    public int Number { get; } = number;
+    public Team Team1 { get; } = team1;
+    public Team Team2 { get; } = team2;
     public int Section { get; set; } = 0;
-    public Team Team1 { get; set; }
-    public Team Team2 { get; set; }
     public MatchStatus Status { get; set; }
-    public MatchResult Result { get; set; }
-    
+    public MatchResult Result { get; set; } = new MatchResult();
+
     public new bool Equals(object obj)
     {
         var otherMatch = (Match)obj;
