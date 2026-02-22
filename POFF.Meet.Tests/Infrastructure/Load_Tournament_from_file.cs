@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
 using POFF.Meet.Domain;
-using POFF.Meet.Domain.PlayModes;
 using POFF.Meet.Domain.PlayModes.RoundRobin;
 using POFF.Meet.Infrastructure.Files;
 using POFF.Meet.View.Model;

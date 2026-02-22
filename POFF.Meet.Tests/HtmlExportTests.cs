@@ -2,6 +2,7 @@
 using System.Threading;
 using NUnit.Framework;
 using POFF.Meet.Domain;
+using POFF.Meet.Domain.PlayModes.RoundRobin;
 using POFF.Meet.Infrastructure;
 using POFF.Meet.View.Model;
 
@@ -16,7 +17,7 @@ public class HtmlExportTests
     public static void SetUp()
     {
         // Arrange
-        var tournament = new Tournament();
+        var tournament = new Tournament() { PlayMode = new RoundRobinPlayMode() };
         tournament.AddTeam("Team N°1");
         tournament.AddTeam("Team N°2");
         tournament.AddTeam("Team N°3").Withdrawn = true;

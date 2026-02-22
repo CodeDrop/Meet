@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using NUnit.Framework;
 using POFF.Meet.Domain;
+using POFF.Meet.Domain.PlayModes.RoundRobin;
 using POFF.Meet.View.Model;
 
 namespace POFF.Meet.Tests;
@@ -26,7 +27,7 @@ public class TournamentTests
     public void GetStandingsTest()
     {
         // Arrange
-        var testClass = new Tournament();
+        var testClass = new Tournament() { PlayMode = new RoundRobinPlayMode() };
         testClass.AddTeam("Team N°1");
         testClass.AddTeam("Team N°2");
         var matchResult = new MatchResult();

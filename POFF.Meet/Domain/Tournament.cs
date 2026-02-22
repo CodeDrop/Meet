@@ -1,6 +1,5 @@
 ﻿using POFF.Meet.Domain;
 using POFF.Meet.Domain.PlayModes;
-using POFF.Meet.Domain.PlayModes.RoundRobin;
 using POFF.Meet.Domain.ScoreModes;
 using System;
 using System.Collections.Generic;
@@ -16,7 +15,7 @@ public class Tournament
     private PlayMode _playMode;
     public static readonly Tournament Empty = new(Guid.Empty, [], [], PlayMode.Empty);
 
-    public Tournament() : this(Guid.NewGuid(), [], [], new RoundRobinPlayMode())
+    public Tournament() : this(Guid.NewGuid(), [], [], PlayMode.Empty)
     { }
 
     public Tournament(Guid id, IEnumerable<Team> teams, IEnumerable<Match> matches, PlayMode playMode)
