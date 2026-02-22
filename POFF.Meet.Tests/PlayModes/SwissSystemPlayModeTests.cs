@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using POFF.Meet.Domain;
 using POFF.Meet.View.Model;
 using System.Linq;
 
@@ -15,6 +16,7 @@ public class SwissSystemPlayModeTests
     {
         _tournament = new Tournament();
         _sut = new SwissSystemPlayMode(_tournament);
+        _tournament.PlayMode = _sut;
     }
 
     [Test]
@@ -47,5 +49,20 @@ public class SwissSystemPlayModeTests
     {
         var round2 = _sut.Generate(teamsCount: 4, round: 2);
         Assert.That(round2.Count(), Is.Zero);
+    }
+
+    [Test]
+    public void Round2_has_same_number_of_fixtures()
+    {
+        // arrange
+        new string[] { "T1", "T2", "T3", "T4" }.ToList().ForEach(t => _tournament.AddTeam(t));
+        _tournament.SetResult(1, new MatchResult([new SetResult(1, 0)]));
+        _tournament.SetResult(2, new MatchResult([new SetResult(1, 0)]));
+
+        // act
+        var round2 = _sut.Generate(teamsCount: 4, round: 2);
+
+        // assert
+        Assert.That(round2.Count(), Is.EqualTo(2));
     }
 }

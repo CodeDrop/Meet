@@ -52,10 +52,10 @@ public class Tournament
     public Team AddTeam(string teamName)
     {
         var number = _teams.Any() ? _teams.Max(t => t.Number) + 1 : 1;
-        var newTeam = new Team 
-        {  
+        var newTeam = new Team
+        {
             Number = number,
-            Name = teamName ?? throw new ArgumentNullException(nameof(teamName)) 
+            Name = teamName ?? throw new ArgumentNullException(nameof(teamName))
         };
         _teams.Add(newTeam);
         GenerateMatches();
@@ -68,11 +68,11 @@ public class Tournament
         GenerateMatches();
     }
 
-    private void GenerateMatches()
+    private void GenerateMatches(int round = 1)
     {
         _matches.Clear();
 
-        foreach (var fixture in PlayMode.Generate(_teams.Count))
+        foreach (var fixture in PlayMode.Generate(_teams.Count, round))
         {
             var match = new Match(_matches.Count + 1, _teams[fixture.Item1], _teams[fixture.Item2]);
             match.Section = fixture.Round;
@@ -97,7 +97,7 @@ public class Tournament
         }
         else if (Teams.Any())
         {
-            return [.. Teams.Select(team=> new Standing(team))];
+            return [.. Teams.Select(team => new Standing(team))];
         }
         return [];
     }
