@@ -8,12 +8,7 @@ public abstract class PlayMode(in string name)
 
     public string Name { get; } = name;
 
-    public abstract IEnumerable<Fixture> Generate(int teamsCount);
-
-    public virtual IEnumerable<Fixture> Generate(int teamsCount, IEnumerable<Match> playedMatches = null)
-    {
-        return [];
-    }
+    public abstract IEnumerable<Fixture> Generate(int teamsCount, int round = 0);
 
     public virtual bool IsIterative => false;
 

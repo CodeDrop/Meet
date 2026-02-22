@@ -1,32 +1,26 @@
-﻿using POFF.Meet.Domain;
-using POFF.Meet.Domain.PlayModes;
+﻿using POFF.Meet.Domain.PlayModes;
+using POFF.Meet.View.Model;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace POFF.Meet;
 
-public class SwissSystemPlayMode : PlayMode
+public class SwissSystemPlayMode(in Tournament tournament) : PlayMode("Swiss System")
 {
-    public SwissSystemPlayMode() : base("Swiss System")
-    { }
+    private readonly Tournament _tournament = tournament;
 
     public override bool IsIterative => true;
 
-    public override IEnumerable<Fixture> Generate(int teamsCount)
+    public override IEnumerable<Fixture> Generate(int teamsCount, int round = 0)
     {
-        if (teamsCount % 2 != 0) yield break;
+        int matchesPerRound = teamsCount / 2;
+        bool isPreviousRoundFinished = round == 1 ||
+            matchesPerRound == _tournament.Matches.Count(
+            m => m.Section == round - 1 && m.Status == Domain.MatchStatus.Finished);
 
-        for (int i = 1; i < teamsCount; i += 2)
-        {
-            yield return new Fixture(i - 1, i) { Round = 1 };
-        }
-    }
+        if (round == 0 || teamsCount % 2 != 0 || !isPreviousRoundFinished)
+            yield break;
 
-    public override IEnumerable<Fixture> Generate(int teamsCount, IEnumerable<Match> playedMatches = null)
-    {
-        if (teamsCount % 2 != 0 || !playedMatches.Any()) yield break;
-        // This is a placeholder implementation for Swiss System pairing.
-        // A real implementation would consider the results of playedMatches.
         for (int i = 1; i < teamsCount; i += 2)
         {
             yield return new Fixture(i - 1, i) { Round = 1 };

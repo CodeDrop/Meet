@@ -7,5 +7,5 @@ public class PlayModeEmpty : PlayMode
     public PlayModeEmpty() : base(string.Empty)
     { }
 
-    public override IEnumerable<Fixture> Generate(int teamsCount) => [];
+    public override IEnumerable<Fixture> Generate(int teamsCount, int round = 0) => [];
 }

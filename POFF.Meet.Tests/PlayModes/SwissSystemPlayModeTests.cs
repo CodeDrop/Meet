@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using POFF.Meet.Domain;
+using POFF.Meet.View.Model;
 using System.Linq;
 
 namespace POFF.Meet.Tests.PlayModes;
@@ -8,11 +8,26 @@ namespace POFF.Meet.Tests.PlayModes;
 public class SwissSystemPlayModeTests
 {
     private SwissSystemPlayMode _sut;
+    private Tournament _tournament;
 
     [SetUp]
     public void SetUp()
     {
-        _sut = new SwissSystemPlayMode();
+        _tournament = new Tournament();
+        _sut = new SwissSystemPlayMode(_tournament);
+    }
+
+    [Test]
+    public void Swiss_System_generates_round_1()
+    {
+        Assert.That(_sut.Generate(4).All(f => f.Round == 1), Is.True);
+    }
+
+    [Test]
+    public void Round0_has_zero_fixtures()
+    {
+        var round0 = _sut.Generate(teamsCount: 10, round: 0);
+        Assert.That(round0.Count(), Is.Zero);
     }
 
     [Test]
@@ -21,27 +36,16 @@ public class SwissSystemPlayModeTests
     [TestCase(2, 1)]
     [TestCase(3, 0)]
     [TestCase(4, 2)]
-    public void Round1_has_expected_number_of_fixtures(int teamCount, int expectedFixtureCount)
+    public void Round1_has_expected_number_of_fixtures(int teamsCount, int expectedFixtureCount)
     {
-        var result = _sut.Generate(teamCount);
-        Assert.That(result.Count(), Is.EqualTo(expectedFixtureCount));
+        var round1 = _sut.Generate(teamsCount, 1);
+        Assert.That(round1.Count(), Is.EqualTo(expectedFixtureCount));
     }
 
     [Test]
-    [TestCase(0)]
-    [TestCase(2)]
-    [TestCase(4)]
-    public void Round2_has_zero_fixtures_when_no_games_played(int teamCount)
+    public void Round2_has_zero_fixtures_when_no_games_played()
     {
-        var round1 = _sut.Generate(teamCount);
-        Match[] matches = [];
-        var round2 = _sut.Generate(teamCount, matches);
+        var round2 = _sut.Generate(teamsCount: 4, round: 2);
         Assert.That(round2.Count(), Is.Zero);
-    }
-
-    [Test]
-    public void Swiss_System_generates_round_1()
-    {
-        Assert.That(_sut.Generate(4).All(f => f.Round == 1), Is.True);
     }
 }

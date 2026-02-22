@@ -11,7 +11,7 @@ public class RoundRobinPlayMode : PlayMode
     public RoundRobinPlayMode() : base("Round Robin")
     { }
 
-    public override IEnumerable<Fixture> Generate(int teamsCount)
+    public override IEnumerable<Fixture> Generate(int teamsCount, int round = 0)
     {
         _teamsCount = teamsCount;
         var startIndex = default(int);

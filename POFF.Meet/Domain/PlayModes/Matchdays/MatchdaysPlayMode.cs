@@ -8,7 +8,7 @@ public class MatchdaysPlayMode : PlayMode
     public MatchdaysPlayMode() : base("Match Days")
     { }
 
-    public override IEnumerable<Fixture> Generate(int teamsCount)
+    public override IEnumerable<Fixture> Generate(int teamsCount, int round = 0)
     {
         // Only even number of teams except 6 can be distributed in matchdays
         if (teamsCount % 2 != 0 || teamsCount == 6) return [];
