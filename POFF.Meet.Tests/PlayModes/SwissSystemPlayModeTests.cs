@@ -65,4 +65,22 @@ public class SwissSystemPlayModeTests
         // assert
         Assert.That(round2.Count(), Is.EqualTo(2));
     }
+
+    [Test]
+    public void Round2_match_has_player_with_same_score()
+    {
+        // arrange
+        new string[] { "T1", "T2", "T3", "T4" }.ToList().ForEach(t => _tournament.AddTeam(t));
+        _tournament.SetResult(1, new MatchResult([new SetResult(1, 0)]));
+        _tournament.SetResult(2, new MatchResult([new SetResult(1, 0)]));
+
+        // act
+        var round2 = _sut.Generate(teamsCount: 4, round: 2).ToList();
+
+        // assert
+        Assert.That(round2[0].Item1, Is.EqualTo(0), "Fixture 1, home team index");
+        Assert.That(round2[0].Item2, Is.EqualTo(2), "Fixture 1, guest team index");
+        Assert.That(round2[1].Item1, Is.EqualTo(1), "Fixture 2, home team index");
+        Assert.That(round2[1].Item2, Is.EqualTo(3), "Fixture 2, guest team index");
+    }
 }
