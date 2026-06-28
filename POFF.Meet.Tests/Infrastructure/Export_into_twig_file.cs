@@ -61,15 +61,15 @@ public class Export_into_twig_file
     }
 
     [Test]
-    [TestCase("<td>1</td><td>Team A</td><td>Team B</td><td>3:0</td>")]
+    [TestCase("<td>1</td><td>Team A</td><td>(3:0)</td><td>Team B</td>")]
     public void File_contains_game_HTML(string ranking)
     {
         Assert.That(_content, Does.Contain(ranking));
     }
 
     [Test]
-    [TestCase("<td>2</td><td>Team B</td><td>Team C</td>")]
-    public void File_does_not_contains_game_HTML(string ranking)
+    [TestCase("<td>2</td><td>Team B</td><td>(2:1)</td><td>Team C</td>")]
+    public void File_does_not_contain_game_HTML(string ranking)
     {
         Assert.That(_content, Does.Not.Contain(ranking));
     }

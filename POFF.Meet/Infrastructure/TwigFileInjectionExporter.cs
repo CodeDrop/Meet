@@ -58,8 +58,8 @@ public class TwigFileInjectionExporter : IExporter
             gamesBuilder.Append("<tr>");
             gamesBuilder.Append($"<td>{match.Number}</td>");
             gamesBuilder.Append($"<td>{match.Team1.Name}</td>");
-            gamesBuilder.Append($"<td>{match.Team2.Name}</td>");
             gamesBuilder.Append($"<td>{match.Result}</td>");
+            gamesBuilder.Append($"<td>{match.Team2.Name}</td>");
             gamesBuilder.Append("</tr>");
             gamesBuilder.Append(Environment.NewLine);
         }
